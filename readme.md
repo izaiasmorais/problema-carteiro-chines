@@ -1,3 +1,3 @@
-[ ] - código
-[ ] - relatório
-[ ] - slide
+- [ ] código
+- [ ] relatório
+- [ ] slide
