@@ -10,4 +10,8 @@ class Aresta {
         inicio.grau++;
         destino.grau++;
     }
+
+    public int getPeso() {
+        return peso;
+    }
 }

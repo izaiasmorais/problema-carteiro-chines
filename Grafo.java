@@ -24,4 +24,8 @@ class Grafo {
     public List<Vertice> getVertices() {
         return vertices;
     }
+
+    public List<Aresta> getArestas() {
+        return arestas;
+    }
 }
