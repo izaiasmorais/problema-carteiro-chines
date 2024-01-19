@@ -7,5 +7,7 @@ class Aresta {
         this.inicio = inicio;
         this.destino = destino;
         this.peso = peso;
+        inicio.grau++;
+        destino.grau++;
     }
 }

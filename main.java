@@ -18,6 +18,13 @@ public class main {
         grafo.adicionarAresta(d, e, 1);
         grafo.adicionarAresta(d, f, 6);
         grafo.adicionarAresta(e, f, 2);
+
+        for (Vertice vertice : grafo.getVertices()) {
+            System.out.println("Grau do vertice " + vertice.getId() + " = " + vertice.getGrau());
+        }
+
+        AlgoritimoPCC algoritimoPCC = new AlgoritimoPCC();
+        System.out.println("Todos os vertices são pares? " + algoritimoPCC.todosVerticesPar(grafo));
     }
 }
         
