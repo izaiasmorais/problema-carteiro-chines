@@ -22,12 +22,6 @@ public class main {
         grafo.adicionarAresta(d, f, 6);
         grafo.adicionarAresta(e, f, 2);
 
-        for (Vertice vertice : grafo.getVertices()) {
-            System.out.println("Grau do vertice " + vertice.getId() + " = " + vertice.getGrau());
-        }
-    
-        System.out.println("Todos os vertices são pares? " + algoritimoPCC.todosVerticesPar(grafo)); 
-
         Grafo grafo2 = new Grafo();
 
         Vertice a1 = new Vertice(0);
@@ -39,15 +33,7 @@ public class main {
         grafo2.adicionarAresta(a1, b1, 1);
         grafo2.adicionarAresta(d1, a1, 1);
         grafo2.adicionarAresta(b1, c1, 1);
-      
-        System.out.println("Todos os vertices são pares? " + algoritimoPCC.todosVerticesPar(grafo2));
-
-        System.out.println("Ciclo euleriano: " + algoritimoPCC.getCicloEuleriano(grafo2));
-
-        algoritimoPCC.AlgoritimoHierholzer(grafo2);
-
-        algoritimoPCC.AlgoritimoHierholzer(grafo);
-
+    
     }
 
 }

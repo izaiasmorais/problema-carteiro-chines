@@ -25,4 +25,9 @@ class Vertice {
     public ArrayList<Aresta> getArestas() {
         return arestas;
     }
+
+    @Override
+    public String toString() {
+        return "V" + id; // Uma representação mais clara do vértice
+    }
 }
