@@ -19,6 +19,15 @@ class Grafo {
         if (!vertices.contains(destino)) {
             vertices.add(destino);
         }
+
+        inicio.arestas.add(aresta);
+    }
+
+    public void removerAresta(Aresta aresta) {
+        arestas.remove(aresta);
+        aresta.inicio.arestas.remove(aresta);
+        aresta.inicio.grau--;
+        aresta.destino.grau--;
     }
 
     public List<Vertice> getVertices() {
