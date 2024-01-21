@@ -1,32 +1,47 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-class Grafo {
-    private List<Vertice> vertices;
-    private List<Aresta> arestas;
+public class Grafo {
+    private Map<Integer, List<Aresta>> adjacencia;
 
     public Grafo() {
-        this.arestas = new ArrayList<>();
-        this.vertices = new ArrayList<>();
+        adjacencia = new HashMap<>();
     }
 
-    public void adicionarAresta(Vertice inicio, Vertice destino, int peso) {
-        Aresta aresta = new Aresta(inicio, destino, peso);
-        arestas.add(aresta);
-        if (!vertices.contains(inicio)) {
-            vertices.add(inicio);
+    public void adicionarVertice(int vertice) {
+        if (!adjacencia.containsKey(vertice)) {
+            adjacencia.put(vertice, new ArrayList<>());
         }
-        if (!vertices.contains(destino)) {
-            vertices.add(destino);
+    }
+
+    public void adicionarAresta(int vertice1, int vertice2, int peso) {
+        adicionarVertice(vertice1);
+        adicionarVertice(vertice2);
+
+        Aresta aresta1 = new Aresta(vertice2, peso);
+        Aresta aresta2 = new Aresta(vertice1, peso);
+
+        adjacencia.get(vertice1).add(aresta1);
+        adjacencia.get(vertice2).add(aresta2);
+    }
+
+    public List<Aresta> getArestas(int vertice) {
+        return adjacencia.getOrDefault(vertice, new ArrayList<>());
+    }
+
+    public List<Integer> getVertices() {
+        return new ArrayList<>(adjacencia.keySet());
+    }
+
+    public void imprimirGrafo() {
+        for (int vertice : adjacencia.keySet()) {
+            System.out.print("Vértice " + vertice + ": ");
+            for (Aresta aresta : adjacencia.get(vertice)) {
+                System.out.print("(" + aresta.getVerticeDestino() + ", " + aresta.getPeso() + ") ");
+            }
+            System.out.println();
         }
-        inicio.arestas.add(aresta);
-    }
-
-    public List<Vertice> getVertices() {
-        return vertices;
-    }
-
-    public List<Aresta> getArestas() {
-        return arestas;
     }
 }

@@ -1,14 +1,14 @@
-class Aresta {
-    Vertice inicio;
-    Vertice destino;
-    int peso;
+public class Aresta {
+    private int verticeDestino;
+    private int peso;
 
-    public Aresta(Vertice inicio, Vertice destino, int peso) {
-        this.inicio = inicio;
-        this.destino = destino;
+    public Aresta(int verticeDestino, int peso) {
+        this.verticeDestino = verticeDestino;
         this.peso = peso;
-        inicio.grau++;
-        destino.grau++;
+    }
+
+    public int getVerticeDestino() {
+        return verticeDestino;
     }
 
     public int getPeso() {
