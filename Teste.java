@@ -1,8 +1,6 @@
-public class main {
+public class Teste {
 
     public static void main(String[] args) {
-
-        AlgoritimoPCC algoritimoPCC = new AlgoritimoPCC();
 
         Grafo grafo = new Grafo();
 
@@ -22,19 +20,10 @@ public class main {
         grafo.adicionarAresta(d, f, 6);
         grafo.adicionarAresta(e, f, 2);
 
-        Grafo grafo2 = new Grafo();
+        Algoritimos algoritimo = new Algoritimos();
 
-        Vertice a1 = new Vertice(0);
-        Vertice b1 = new Vertice(1);
-        Vertice c1 = new Vertice(2);
-        Vertice d1 = new Vertice(3);
-
-        grafo2.adicionarAresta(c1, d1, 1);
-        grafo2.adicionarAresta(a1, b1, 1);
-        grafo2.adicionarAresta(d1, a1, 1);
-        grafo2.adicionarAresta(b1, c1, 1);
-    
-    }
-
-}
+        System.out.println("Distancia minima vertice v1 ao v6: " + algoritimo.AlgoritmoDijkstra(grafo, a, f));
         
+    }
+    
+}

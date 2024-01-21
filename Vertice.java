@@ -26,8 +26,4 @@ class Vertice {
         return arestas;
     }
 
-    @Override
-    public String toString() {
-        return "V" + id; // Uma representação mais clara do vértice
-    }
 }
