@@ -26,4 +26,8 @@ class Vertice {
         return arestas;
     }
 
+    public String toString() {
+        return "V"+ id;
+    }
+
 }
