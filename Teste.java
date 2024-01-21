@@ -1,7 +1,6 @@
 public class Teste {
 
     public static void main(String[] args) {
-
         Grafo grafo = new Grafo();
 
         Vertice a = new Vertice(0);
@@ -10,7 +9,6 @@ public class Teste {
         Vertice d = new Vertice(3);
         Vertice e = new Vertice(4);
         Vertice f = new Vertice(5);
-     
 
         grafo.adicionarAresta(a, b, 2);
         grafo.adicionarAresta(b, c, 1);
@@ -20,10 +18,9 @@ public class Teste {
         grafo.adicionarAresta(d, f, 6);
         grafo.adicionarAresta(e, f, 2);
 
-        Algoritimos algoritimo = new Algoritimos();
+        Algoritimos algoritmo = new Algoritimos();
 
-        System.out.println("Distancia minima vertice v1 ao v6: " + algoritimo.AlgoritmoDijkstra(grafo, a, f));
-        
+        System.out.println("Distancia minima vertice v1 ao v6: " + algoritmo.AlgoritmoDijkstra(grafo, a, f));
+
     }
-    
 }
