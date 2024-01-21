@@ -1,54 +1,47 @@
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-class Grafo {
-    private List<Vertice> vertices;
-    private List<Aresta> arestas;
+public class Grafo {
+    private Map<Integer, List<Aresta>> adjacencia;
 
     public Grafo() {
-        this.arestas = new ArrayList<>();
-        this.vertices = new ArrayList<>();
+        adjacencia = new HashMap<>();
     }
 
-    public void adicionarAresta(Vertice inicio, Vertice destino, int peso) {
-        Aresta aresta = new Aresta(inicio, destino, peso);
-        arestas.add(aresta);
-        if (!vertices.contains(inicio)) {
-            vertices.add(inicio);
+    public void adicionarVertice(int vertice) {
+        if (!adjacencia.containsKey(vertice)) {
+            adjacencia.put(vertice, new ArrayList<>());
         }
-        if (!vertices.contains(destino)) {
-            vertices.add(destino);
-        }
-        inicio.arestas.add(aresta);
     }
 
-    public void removerVertice(Vertice vertice) {
-        Iterator<Aresta> iterator = arestas.iterator();
-        while (iterator.hasNext()) {
-            Aresta aresta = iterator.next();
-            if (aresta.inicio.equals(vertice) || aresta.destino.equals(vertice)) {
-                aresta.inicio.diminuirGrau();
-                aresta.destino.diminuirGrau();
-                iterator.remove();
+    public void adicionarAresta(int vertice1, int vertice2, int peso) {
+        adicionarVertice(vertice1);
+        adicionarVertice(vertice2);
+
+        Aresta aresta1 = new Aresta(vertice2, peso);
+        Aresta aresta2 = new Aresta(vertice1, peso);
+
+        adjacencia.get(vertice1).add(aresta1);
+        adjacencia.get(vertice2).add(aresta2);
+    }
+
+    public List<Aresta> getArestas(int vertice) {
+        return adjacencia.getOrDefault(vertice, new ArrayList<>());
+    }
+
+    public List<Integer> getVertices() {
+        return new ArrayList<>(adjacencia.keySet());
+    }
+
+    public void imprimirGrafo() {
+        for (int vertice : adjacencia.keySet()) {
+            System.out.print("Vértice " + vertice + ": ");
+            for (Aresta aresta : adjacencia.get(vertice)) {
+                System.out.print("(" + aresta.getVerticeDestino() + ", " + aresta.getPeso() + ") ");
             }
+            System.out.println();
         }
-        vertices.remove(vertice);
-    }
-
-    public void removerAresta(Aresta aresta) {
-        arestas.remove(aresta);
-        aresta.inicio.arestas.remove(aresta);
-        aresta.inicio.diminuirGrau();
-        aresta.destino.arestas.remove(aresta);
-        aresta.destino.diminuirGrau();
-    }
-
-    public List<Vertice> getVertices() {
-        return vertices;
-    }
-
-    public List<Aresta> getArestas() {
-        return arestas;
     }
 }
