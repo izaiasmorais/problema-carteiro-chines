@@ -1,13 +1,8 @@
 import java.util.*;
 
 class Algoritmos {
-    private Grafo grafo;
 
-    public Algoritmos(Grafo grafo) {
-        this.grafo = grafo;
-    }
-
-    public Map<Integer, Integer> dijkstra(int verticeInicial) {
+    public Map<Integer, Integer> dijkstra(Grafo grafo, int verticeInicial) {
         Map<Integer, Integer> distancias = new HashMap<>();
         PriorityQueue<NoDistancia> filaPrioridade = new PriorityQueue<>(Comparator.comparingInt(NoDistancia::getDistancia));
 
@@ -51,6 +46,11 @@ class Algoritmos {
         public int getDistancia() {
             return distancia;
         }
+    }
+
+    public int dijkstra(Grafo grafo, int verticeInicial, int verticeFinal) {
+        Map<Integer, Integer> distancias = dijkstra(grafo, verticeInicial);
+        return distancias.get(verticeFinal);
     }
 }
 
