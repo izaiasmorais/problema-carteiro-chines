@@ -44,4 +44,16 @@ public class Grafo {
             System.out.println();
         }
     }
+
+    public int quantidadeArestas() {
+        int quantidade = 0;
+        for (int vertice : adjacencia.keySet()) {
+            quantidade += adjacencia.get(vertice).size();
+        }
+        return quantidade / 2;
+    }
+
+    public Map<Integer, List<Aresta>> getAdjacencia() {
+        return adjacencia;
+    }
 }

@@ -52,5 +52,24 @@ class Algoritmos {
         Map<Integer, Integer> distancias = dijkstra(grafo, verticeInicial);
         return distancias.get(verticeFinal);
     }
+
+    public void Hierholzer(Grafo grafo, int verticeInicial){
+        int numeroDeArestas = grafo.quantidadeArestas();
+        Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
+
+        int verticeAtual = verticeInicial;
+
+        System.out.println("Ciclo Euleriano: ");
+
+        while (numeroDeArestas > 0) {
+            int verticeAdjacente = adjacencia.get(verticeAtual).get(0).getVerticeDestino();
+            System.out.println(verticeAtual + " -> " + verticeAdjacente);
+            adjacencia.get(verticeAtual).remove(0);
+            adjacencia.get(verticeAdjacente).remove(0);
+            verticeAtual = verticeAdjacente;
+            numeroDeArestas--;
+        }
+
+    }
 }
 

@@ -4,6 +4,7 @@ import java.util.Map;
 public class Teste {
     
     public static void main(String[] args) {
+        Algoritmos algoritmos = new Algoritmos();
         Grafo grafo = new Grafo();
 
         grafo.adicionarAresta(1, 2, 2);
@@ -17,14 +18,12 @@ public class Teste {
 
         grafo.imprimirGrafo();
 
-        Algoritmos algoritmos = new Algoritmos();
 
         Map<Integer, Integer> distancias = algoritmos.dijkstra(grafo, 1);
 
         for (int vertice : distancias.keySet()) {
             System.out.println("Distância do vértice 1 ao vértice " + vertice + ": " + distancias.get(vertice));
         }
-
 
         Grafo grafo2 = new Grafo();
 
@@ -36,7 +35,8 @@ public class Teste {
         System.out.println("Distancia do v1 para o v3 = " + algoritmos.dijkstra(grafo2, 3, 1));
 
         grafo2.imprimirGrafo();
-        
+
+        algoritmos.Hierholzer(grafo2, 1);
     }
 
 }
