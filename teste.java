@@ -7,47 +7,32 @@ public class Teste {
         Algoritmos algoritmos = new Algoritmos();
         Grafo grafo = new Grafo();
 
-        grafo.adicionarAresta(1, 2, 2);
-        grafo.adicionarAresta(2, 3, 99);
-        grafo.adicionarAresta(3, 4, 3);
-        grafo.adicionarAresta(4, 5, 1);
-        grafo.adicionarAresta(5, 6, 2);
-        grafo.adicionarAresta(6, 4, 6);
-        grafo.adicionarAresta(6, 2, 4);
-        
+        int a = 1;
+        int b = 2;
+        int c = 3;
+        int d = 4;
+        int e = 5;
+        int f = 6;
 
-        System.out.println("Grau do vertice 6: " + grafo.getGrau(6));
+        grafo.adicionarAresta(a, b, 1);
+        grafo.adicionarAresta(b, c, 4);
+        grafo.adicionarAresta(a, d, 1);
+        grafo.adicionarAresta(d, e, 3);
+        grafo.adicionarAresta(e, f, 1);
+        grafo.adicionarAresta(f, c, 3);
+        grafo.adicionarAresta(a, e, 2);
+        grafo.adicionarAresta(b, f, 5);
+        grafo.adicionarAresta(e, c, 1);
 
         grafo.imprimirGrafo();
 
-        System.out.println("Grafo KN: ");
-        algoritmos.criaGrafoKN(grafo).imprimirGrafo();
+        System.out.println("Grafo KN:");
+        Grafo grafoKN = algoritmos.criaGrafoKN(grafo);
+        grafoKN.imprimirGrafo();
 
-        
-
-
-        Map<Integer, Integer> distancias = algoritmos.dijkstra(grafo, 1);
-
-        for (int vertice : distancias.keySet()) {
-            System.out.println("Distância do vértice 1 ao vértice " + vertice + ": " + distancias.get(vertice));
-        }
-
-        Grafo grafo2 = new Grafo();
-
-        grafo2.adicionarAresta(1, 2, 2);
-        grafo2.adicionarAresta(2, 3, 77);
-        grafo2.adicionarAresta(3, 4, 1);
-        grafo2.adicionarAresta(4, 1, 25);
-        grafo2.adicionarAresta(1, 3, 1);
-        grafo2.adicionarAresta(2, 5, 1);
-
-        System.out.println("Distancia do v1 para o v3 = " + algoritmos.dijkstra(grafo2, 3, 1));
-
-        grafo2.imprimirGrafo();
-
-        algoritmos.Hierholzer(grafo2, 1);
-
-        algoritmos.criaGrafoKN(grafo2).imprimirGrafo();
+        System.out.println("Hipergrafo G: ");
+        Grafo hipergrafo = algoritmos.umEmparelhamentoHeuristico(grafo, grafoKN);
+        hipergrafo.imprimirGrafo();
 
     }
 

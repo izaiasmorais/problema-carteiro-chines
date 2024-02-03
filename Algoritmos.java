@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 class Algoritmos {
@@ -56,11 +55,6 @@ class Algoritmos {
 
     public void Hierholzer(Grafo grafo, int verticeInicial){
 
-        if(grafo.getGrau(verticeInicial) % 2 != 0){
-            System.out.println("Não é possível encontrar um ciclo euleriano");
-            return;
-        }
-
         int numeroDeArestas = grafo.quantidadeArestas();
         Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
 
@@ -103,9 +97,64 @@ class Algoritmos {
             }
         }
 
-        
-
         return KN;
     }
-}
 
+    @SuppressWarnings("rawtypes")
+    public List getCaminhoMinimo(Grafo grafo, int verticeInicial, int verticeFinal) {
+        Map<Integer, Integer> distancias = dijkstra(grafo, verticeInicial);
+        int distancia = distancias.get(verticeFinal);
+        List<Integer> caminho = new ArrayList<>();
+        caminho.add(verticeFinal);
+
+        while (verticeFinal != verticeInicial) {
+            for (Aresta aresta : grafo.getArestas(verticeFinal)) {
+                int verticeAdjacente = aresta.getVerticeDestino();
+                int distanciaAdjacente = distancias.get(verticeAdjacente);
+                if (distanciaAdjacente + aresta.getPeso() == distancia) {
+                    caminho.add(verticeAdjacente);
+                    distancia = distanciaAdjacente;
+                    verticeFinal = verticeAdjacente;
+                    break;
+                }
+            }
+        }
+
+        Collections.reverse(caminho);
+        return caminho;
+    }
+
+    public Grafo duplicaArestasDoCaminhoGrafo(Grafo grafo, List<Integer> caminho) {
+        Grafo grafoComCaminhoDuplicado = grafo;
+
+        for (int i = 0; i < caminho.size() - 1; i++) {
+            int vertice1 = caminho.get(i);
+            int vertice2 = caminho.get(i + 1);
+            int peso = dijkstra(grafo, vertice1, vertice2);
+            grafoComCaminhoDuplicado.adicionarAresta(vertice1, vertice2, peso);
+        }
+
+        return grafoComCaminhoDuplicado;
+    }
+
+    public Grafo umEmparelhamentoHeuristico(Grafo grafo, Grafo grafoKN){
+
+        Grafo hipergrafoG = grafo;
+        
+       if(grafoKN.getAdjacencia().size() % 2 != 0){
+            for(int i = 0;i<grafoKN.getAdjacencia().size() - 1 ;i+=2){
+                @SuppressWarnings("unchecked")
+                List<Integer> caminho = getCaminhoMinimo(grafo, i, i+1);
+                duplicaArestasDoCaminhoGrafo(hipergrafoG, caminho);
+            }
+
+       }else{
+            for(int i = 0;i<grafoKN.getAdjacencia().size();i+=2){
+                @SuppressWarnings("unchecked")
+                List<Integer> caminho = getCaminhoMinimo(grafo, i, i+1);
+                duplicaArestasDoCaminhoGrafo(hipergrafoG, caminho);
+            }
+        }
+        return hipergrafoG;
+    }
+}
