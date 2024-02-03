@@ -14,9 +14,16 @@ public class Teste {
         grafo.adicionarAresta(5, 6, 2);
         grafo.adicionarAresta(6, 4, 6);
         grafo.adicionarAresta(6, 2, 4);
+        
 
+        System.out.println("Grau do vertice 6: " + grafo.getGrau(6));
 
         grafo.imprimirGrafo();
+
+        System.out.println("Grafo KN: ");
+        algoritmos.criaGrafoKN(grafo).imprimirGrafo();
+
+        
 
 
         Map<Integer, Integer> distancias = algoritmos.dijkstra(grafo, 1);
@@ -31,12 +38,17 @@ public class Teste {
         grafo2.adicionarAresta(2, 3, 77);
         grafo2.adicionarAresta(3, 4, 1);
         grafo2.adicionarAresta(4, 1, 25);
+        grafo2.adicionarAresta(1, 3, 1);
+        grafo2.adicionarAresta(2, 5, 1);
 
         System.out.println("Distancia do v1 para o v3 = " + algoritmos.dijkstra(grafo2, 3, 1));
 
         grafo2.imprimirGrafo();
 
         algoritmos.Hierholzer(grafo2, 1);
+
+        algoritmos.criaGrafoKN(grafo2).imprimirGrafo();
+
     }
 
 }

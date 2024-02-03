@@ -56,4 +56,8 @@ public class Grafo {
     public Map<Integer, List<Aresta>> getAdjacencia() {
         return adjacencia;
     }
+
+    public int getGrau(int vertice) {
+        return adjacencia.get(vertice).size();
+    }
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 class Algoritmos {
@@ -54,6 +55,12 @@ class Algoritmos {
     }
 
     public void Hierholzer(Grafo grafo, int verticeInicial){
+
+        if(grafo.getGrau(verticeInicial) % 2 != 0){
+            System.out.println("Não é possível encontrar um ciclo euleriano");
+            return;
+        }
+
         int numeroDeArestas = grafo.quantidadeArestas();
         Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
 
@@ -70,6 +77,44 @@ class Algoritmos {
             numeroDeArestas--;
         }
 
+    }
+
+    public Grafo criaGrafoKN(Grafo grafo) {
+        Grafo KN = new Grafo();
+    
+        Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
+    
+        // Criar uma lista para armazenar os vértices com grau ímpar
+        ArrayList<Integer> vertices = new ArrayList<>();
+    
+        for (int vertice : adjacencia.keySet()) {
+            if (grafo.getGrau(vertice) % 2 != 0) {
+                vertices.add(vertice);
+            }
+        }
+        System.out.println("Vertices com grau ímpar: " + vertices);
+    
+        if(vertices.size() % 2 != 0){
+
+            for (int i = 0; i < vertices.size()-1; i+=2) {
+                int vertice1 = vertices.get(i);
+                int vertice2 = vertices.get((i + 1));
+                int peso = dijkstra(grafo, vertice1, vertice2);
+                KN.adicionarAresta(vertice1, vertice2, peso);
+            }
+            
+        }else{
+            for (int i = 0; i < vertices.size(); i+=2) {
+                int vertice1 = vertices.get(i);
+                int vertice2 = vertices.get((i + 1));
+                int peso = dijkstra(grafo, vertice1, vertice2);
+                KN.adicionarAresta(vertice1, vertice2, peso);
+            }
+        }
+
+        
+
+        return KN;
     }
 }
 
