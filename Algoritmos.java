@@ -94,19 +94,10 @@ class Algoritmos {
         }
         System.out.println("Vertices com grau ímpar: " + vertices);
     
-        if(vertices.size() % 2 != 0){
-
-            for (int i = 0; i < vertices.size()-1; i+=2) {
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = i + 1; j < vertices.size(); j++) {
                 int vertice1 = vertices.get(i);
-                int vertice2 = vertices.get((i + 1));
-                int peso = dijkstra(grafo, vertice1, vertice2);
-                KN.adicionarAresta(vertice1, vertice2, peso);
-            }
-            
-        }else{
-            for (int i = 0; i < vertices.size(); i+=2) {
-                int vertice1 = vertices.get(i);
-                int vertice2 = vertices.get((i + 1));
+                int vertice2 = vertices.get(j);
                 int peso = dijkstra(grafo, vertice1, vertice2);
                 KN.adicionarAresta(vertice1, vertice2, peso);
             }
