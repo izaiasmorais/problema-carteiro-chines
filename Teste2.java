@@ -23,8 +23,11 @@ public class Teste2 {
 
         grafo.imprimirGrafo();
 
-        resolver.AlgResolverCarteiroChines(grafo);
 
+        long inicio = System.currentTimeMillis();
+        resolver.AlgResolverCarteiroChines(grafo);
+        long fim = System.currentTimeMillis();
+        long tempoTotal = fim - inicio;
+        System.out.println("Tempo de execução: " + tempoTotal + " milissegundos");
     }
-    
 }
