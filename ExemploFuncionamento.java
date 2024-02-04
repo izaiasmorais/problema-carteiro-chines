@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Teste {
+public class ExemploFuncionamento {
     
     public static void main(String[] args) {
         Algoritmos algoritmos = new Algoritmos();
