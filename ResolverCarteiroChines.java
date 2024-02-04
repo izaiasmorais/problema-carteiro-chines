@@ -5,11 +5,12 @@ public class ResolverCarteiroChines {
     public void AlgResolverCarteiroChines(Grafo grafo){
         Algoritmos algoritmos = new Algoritmos();
 
+        System.out.println("Grafo: ");
+        grafo.imprimirGrafo();
+
         if(algoritmos.verificaGrafoEuleriano(grafo)){
-            System.out.println("Grafo Euleriano");
             ArrayList<Integer> ciclo = algoritmos.getCicloEuleriano(grafo, 1);
             int peso = algoritmos.getPeso();
-            System.out.println("Ciclo Euleriano: ");
             for(int i = 0; i < ciclo.size(); i++){
                 if(i == ciclo.size()-1){
                     System.out.print(ciclo.get(i));
@@ -22,6 +23,7 @@ public class ResolverCarteiroChines {
             Grafo grafoKN = algoritmos.criaGrafoKN(grafo);
             ArrayList<Integer> M = algoritmos.criaM(grafoKN);
             Grafo hipergrafo = algoritmos.criaHipergrafo(grafo, grafoKN, M);
+            System.out.println("Hipergrafo: ");
             hipergrafo.imprimirGrafo();
             ArrayList<Integer> ciclo = algoritmos.getCicloEuleriano(hipergrafo, 1);
             int peso = algoritmos.getPeso();
