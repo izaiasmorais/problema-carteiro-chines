@@ -1,5 +1,5 @@
 # Problema do Carteiro Chinês
 
-- [ ] código
-- [ ] relatório
+- [x] código
+- [x] relatório
 - [ ] slide
