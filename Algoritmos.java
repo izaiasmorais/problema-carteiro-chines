@@ -1,7 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 class Algoritmos {
+
+    int peso = 0;
 
     public Map<Integer, Integer> dijkstra(Grafo grafo, int verticeInicial) {
         Map<Integer, Integer> distancias = new HashMap<>();
@@ -57,15 +58,18 @@ class Algoritmos {
     public ArrayList<Integer> getCicloEuleriano(Grafo grafo, int verticeInicial){
         Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
         ArrayList<Integer> ciclo = new ArrayList<>();
+        int peso = 0;
         ciclo.add(verticeInicial);
         int verticeAtual = verticeInicial;
         int verticeProximo = 0;
         int i = 0;
         while (adjacencia.get(verticeInicial).size() > 0){
             verticeProximo = adjacencia.get(verticeAtual).get(0).getVerticeDestino();
+            peso += adjacencia.get(verticeAtual).get(0).getPeso();
             adjacencia.get(verticeAtual).remove(0);
             for (int j = 0; j < adjacencia.get(verticeProximo).size(); j++){
                 if (adjacencia.get(verticeProximo).get(j).getVerticeDestino() == verticeAtual){
+                    peso += adjacencia.get(verticeProximo).get(j).getPeso();
                     adjacencia.get(verticeProximo).remove(j);
                     break;
                 }
@@ -74,7 +78,16 @@ class Algoritmos {
             verticeAtual = verticeProximo;
             i++;
         }
+        this.peso = peso;
         return ciclo;       
+    }
+
+    public int getPesoCicloEuleriano(Grafo grafo, ArrayList<Integer> ciclo){
+        int peso = 0;
+        for (int i = 0; i < ciclo.size()-1; i++){
+            peso += dijkstra(grafo, ciclo.get(i), ciclo.get(i+1));
+        }
+        return peso;
     }
 
     public Grafo criaGrafoKN(Grafo grafo) {
@@ -82,7 +95,6 @@ class Algoritmos {
     
         Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
     
-        // Criar uma lista para armazenar os vértices com grau ímpar
         ArrayList<Integer> vertices = new ArrayList<>();
     
         for (int vertice : adjacencia.keySet()) {
@@ -90,7 +102,6 @@ class Algoritmos {
                 vertices.add(vertice);
             }
         }
-        System.out.println("Vertices com grau ímpar: " + vertices);
     
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = i + 1; j < vertices.size(); j++) {
@@ -165,11 +176,23 @@ class Algoritmos {
             int vertice2 = M.get(i+1);
             @SuppressWarnings("unchecked")
             List <Integer> caminho =  getCaminhoMinimo(grafo, vertice1, vertice2);
-            System.out.println("Caminhe de " + vertice1 + " até " + vertice2 + ": " + caminho);
             hiperGrafo = duplicaArestasDoCaminhoGrafo(hiperGrafo, caminho);
         }
         
 
         return hiperGrafo;
+    }
+
+    public Boolean verificaGrafoEuleriano(Grafo grafo){
+        for (int vertice : grafo.getVertices()){
+            if (grafo.getGrau(vertice) % 2 != 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getPeso() {
+        return peso;
     }
 }
