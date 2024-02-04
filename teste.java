@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Teste {
@@ -30,10 +30,24 @@ public class Teste {
         Grafo grafoKN = algoritmos.criaGrafoKN(grafo);
         grafoKN.imprimirGrafo();
 
-        System.out.println("Hipergrafo G: ");
-        Grafo hipergrafo = algoritmos.umEmparelhamentoHeuristico(grafo, grafoKN);
+        System.out.println("M*:");
+        ArrayList<Integer> M = algoritmos.criaM(grafoKN);
+        System.out.println(M);
+
+        Map<Integer, Integer>distancias = algoritmos.dijkstra(grafo, 1);
+        System.out.println("Distancias: " + distancias);
+
+        System.out.println("Hipergrafo:");
+        Grafo hipergrafo = algoritmos.criaHipergrafo(grafo, grafoKN, M);
         hipergrafo.imprimirGrafo();
 
+        System.out.println("Quantidade de arestas: " + hipergrafo.quantidadeArestas());
+
+        ArrayList<Integer> ciclo = algoritmos.getCicloEuleriano(hipergrafo, a);
+        System.out.println("Ciclo Euleriano: ");
+        for (int vertice : ciclo) {
+            System.out.print(vertice + "->");
+        }
     }
 
 }

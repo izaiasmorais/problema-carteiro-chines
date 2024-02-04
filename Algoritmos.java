@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 class Algoritmos {
@@ -53,24 +54,27 @@ class Algoritmos {
         return distancias.get(verticeFinal);
     }
 
-    public void Hierholzer(Grafo grafo, int verticeInicial){
-
-        int numeroDeArestas = grafo.quantidadeArestas();
+    public ArrayList<Integer> getCicloEuleriano(Grafo grafo, int verticeInicial){
         Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
-
+        ArrayList<Integer> ciclo = new ArrayList<>();
+        ciclo.add(verticeInicial);
         int verticeAtual = verticeInicial;
-
-        System.out.println("Ciclo Euleriano: ");
-
-        while (numeroDeArestas > 0) {
-            int verticeAdjacente = adjacencia.get(verticeAtual).get(0).getVerticeDestino();
-            System.out.println(verticeAtual + " -> " + verticeAdjacente);
+        int verticeProximo = 0;
+        int i = 0;
+        while (adjacencia.get(verticeInicial).size() > 0){
+            verticeProximo = adjacencia.get(verticeAtual).get(0).getVerticeDestino();
             adjacencia.get(verticeAtual).remove(0);
-            adjacencia.get(verticeAdjacente).remove(0);
-            verticeAtual = verticeAdjacente;
-            numeroDeArestas--;
+            for (int j = 0; j < adjacencia.get(verticeProximo).size(); j++){
+                if (adjacencia.get(verticeProximo).get(j).getVerticeDestino() == verticeAtual){
+                    adjacencia.get(verticeProximo).remove(j);
+                    break;
+                }
+            }
+            ciclo.add(verticeProximo);
+            verticeAtual = verticeProximo;
+            i++;
         }
-
+        return ciclo;       
     }
 
     public Grafo criaGrafoKN(Grafo grafo) {
@@ -118,6 +122,8 @@ class Algoritmos {
                     break;
                 }
             }
+
+            
         }
 
         Collections.reverse(caminho);
@@ -137,24 +143,33 @@ class Algoritmos {
         return grafoComCaminhoDuplicado;
     }
 
-    public Grafo umEmparelhamentoHeuristico(Grafo grafo, Grafo grafoKN){
+    public ArrayList<Integer> criaM(Grafo KN){
 
-        Grafo hipergrafoG = grafo;
-        
-       if(grafoKN.getAdjacencia().size() % 2 != 0){
-            for(int i = 0;i<grafoKN.getAdjacencia().size() - 1 ;i+=2){
-                @SuppressWarnings("unchecked")
-                List<Integer> caminho = getCaminhoMinimo(grafo, i, i+1);
-                duplicaArestasDoCaminhoGrafo(hipergrafoG, caminho);
-            }
+        ArrayList<Integer> emparelhamento = new ArrayList<>();
+        Map<Integer, List<Aresta>> adjacencia = KN.getAdjacencia();
 
-       }else{
-            for(int i = 0;i<grafoKN.getAdjacencia().size();i+=2){
-                @SuppressWarnings("unchecked")
-                List<Integer> caminho = getCaminhoMinimo(grafo, i, i+1);
-                duplicaArestasDoCaminhoGrafo(hipergrafoG, caminho);
+        //adicone todos os vertices de KN em um arraylist emparelhamento, se o numero de vertices for impar não adicione o ultimo
+        for (int vertice : adjacencia.keySet()) {
+            if (KN.getGrau(vertice) % 2 != 0) {
+                emparelhamento.add(vertice);
             }
         }
-        return hipergrafoG;
+        return emparelhamento;
+    }
+
+    public Grafo criaHipergrafo(Grafo grafo, Grafo KN, ArrayList<Integer> M){
+        Grafo hiperGrafo = grafo;
+
+        for(int i = 0; i < KN.getAdjacencia().size(); i+=2){
+            int vertice1 = M.get(i);
+            int vertice2 = M.get(i+1);
+            @SuppressWarnings("unchecked")
+            List <Integer> caminho =  getCaminhoMinimo(grafo, vertice1, vertice2);
+            System.out.println("Caminhe de " + vertice1 + " até " + vertice2 + ": " + caminho);
+            hiperGrafo = duplicaArestasDoCaminhoGrafo(hiperGrafo, caminho);
+        }
+        
+
+        return hiperGrafo;
     }
 }
