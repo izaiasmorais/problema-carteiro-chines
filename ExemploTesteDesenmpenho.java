@@ -29,4 +29,7 @@ public class ExemploTesteDesenmpenho {
 		long tempoTotal = fim - inicio;
 		System.out.println("Tempo de execução: " + tempoTotal + " milissegundos");
 	}
+
+
+
 }
