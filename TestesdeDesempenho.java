@@ -30,7 +30,8 @@ public class TestesdeDesempenho {
         long tempoFinalDijkstra = System.currentTimeMillis();
         System.out.println("Tempo de execução médio do algoritmo de Dijkstra em " + TipodoGrafo + " é(são): " + (tempoFinalDijkstra - tempoInicialDijkstra) + " milissegundos");
         }
-
+ 
+        
 
     // Métodos para criar grafos de exemplo
     private static Grafo CriarGrafoEulerianoExemplo() {
