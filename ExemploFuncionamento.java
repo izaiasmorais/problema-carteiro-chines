@@ -38,12 +38,12 @@ public class ExemploFuncionamento {
 		Grafo hipergrafo = algoritmos.criaHipergrafo(grafo, grafoKN, M);
 		hipergrafo.imprimirGrafo();
 
-		System.out.println("Quantidade de arestas: " + hipergrafo.quantidadeArestas());
-
 		ArrayList<Integer> ciclo = algoritmos.getCicloEuleriano(hipergrafo, a);
 		System.out.println("Ciclo Euleriano: ");
 		for (int vertice : ciclo) {
 			System.out.print(vertice + "->");
 		}
+
+		System.out.println("\nPeso do ciclo: " + algoritmos.getPeso());
 	}
 }
