@@ -34,9 +34,6 @@ public class ExemploFuncionamento {
 		ArrayList<Integer> M = algoritmos.criaM(grafoKN);
 		System.out.println(M);
 
-		Map<Integer, Integer> distancias = algoritmos.dijkstra(grafo, 1);
-		System.out.println("Distancias: " + distancias);
-
 		System.out.println("Hipergrafo:");
 		Grafo hipergrafo = algoritmos.criaHipergrafo(grafo, grafoKN, M);
 		hipergrafo.imprimirGrafo();

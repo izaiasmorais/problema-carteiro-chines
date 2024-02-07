@@ -62,7 +62,7 @@ class Algoritmos {
 		ciclo.add(verticeInicial);
 		int verticeAtual = verticeInicial;
 		int verticeProximo = 0;
-		int i = 0;																								//  contador não usado
+		int i = 0;																								//  contador não usado (eh sim cara)
 		while (adjacencia.get(verticeInicial).size() > 0) {
 			verticeProximo = adjacencia.get(verticeAtual).get(0).getVerticeDestino();
 			peso += adjacencia.get(verticeAtual).get(0).getPeso();
