@@ -63,20 +63,47 @@ public class TestesdeDesempenho {
 
         // calcula e exibe a média
         long mediaTempos = somaTempos / numeroExecucoes;
-        System.out.println( "\n\nTempo médio de execução do algoritmo do em " + TipodoGrafo + " é(são): " + mediaTempos + " nanosegundos");
+        System.out.println( "\nTempo médio de execução do algoritmo do em " + TipodoGrafo + " é(são): " + mediaTempos + " nanosegundos");
 
     }
         
 
    // pegar exemplos pré-montados
     private static Grafo CriarGrafoEulerianoExemplo() {        // um ponto se conecta a outro até fechar o ciclo
-        Grafo grafoEuleriano = new Grafo();
-        for (int i = 1; i < 30; i++) {
-            grafoEuleriano.adicionarAresta(i, i + 1, 1);
-        }
-        grafoEuleriano.adicionarAresta(30, 1, 1);
+        Grafo grafo = new Grafo();
+        grafo.adicionarAresta(1, 2, 1);
+        grafo.adicionarAresta(2, 3, 1);
+        grafo.adicionarAresta(3, 4, 1);
+        grafo.adicionarAresta(4, 5, 1);
+        grafo.adicionarAresta(5, 6, 1);
+        grafo.adicionarAresta(6, 7, 1);
+        grafo.adicionarAresta(7, 8, 1);
+        grafo.adicionarAresta(8, 9, 1);
+        grafo.adicionarAresta(9, 10, 1);
+        grafo.adicionarAresta(10, 11, 1);
+        grafo.adicionarAresta(11, 12, 1);
+        grafo.adicionarAresta(12, 13, 1);
+        grafo.adicionarAresta(13, 14, 1);
+        grafo.adicionarAresta(14, 15, 1);
+        grafo.adicionarAresta(15, 16, 1);
+        grafo.adicionarAresta(16, 17, 1);
+        grafo.adicionarAresta(17, 18, 1);
+        grafo.adicionarAresta(18, 19, 1);
+        grafo.adicionarAresta(19, 20, 1);
+        grafo.adicionarAresta(20, 21, 1);
+        grafo.adicionarAresta(21, 22, 1);
+        grafo.adicionarAresta(22, 23, 1);
+        grafo.adicionarAresta(23, 24, 1);
+        grafo.adicionarAresta(24, 25, 1);
+        grafo.adicionarAresta(25, 26, 1);
+        grafo.adicionarAresta(26, 27, 1);
+        grafo.adicionarAresta(27, 28, 1);
+        grafo.adicionarAresta(28, 29, 1);
+        grafo.adicionarAresta(29, 30, 1);
+        
+        grafo.adicionarAresta(30, 1, 1);
 
-        return grafoEuleriano;
+        return grafo;
     }
 
     private static Grafo CriarGrafoNaoEulerianoExemplo30() {
@@ -184,7 +211,6 @@ public class TestesdeDesempenho {
         }
         grafo.adicionarAresta(100, 1, 1);
     
-        // Adicionar algumas outras conexões para tornar o grafo não euleriano
         grafo.adicionarAresta(1, 3, 1);
         grafo.adicionarAresta(3, 5, 1);
         grafo.adicionarAresta(5, 7, 1);
