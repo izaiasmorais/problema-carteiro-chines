@@ -177,6 +177,14 @@ class Algoritmos {
 			hiperGrafo = duplicaArestasDoCaminhoGrafo(hiperGrafo, caminho);
 		}
 
+		if(M.size()%2!=0){
+			int vertice1 = M.get(M.size()-1);
+			int vertice2 = M.get(0);
+			@SuppressWarnings("unchecked")
+			List<Integer> caminho = getCaminhoMinimo(grafo, vertice1, vertice2);
+			hiperGrafo = duplicaArestasDoCaminhoGrafo(hiperGrafo, caminho);
+		}
+
 		return hiperGrafo;
 	}
 
@@ -192,4 +200,26 @@ class Algoritmos {
 	public int getPeso() {
 		return peso;
 	}
+
+	public boolean ehConexo(Grafo grafo) {
+		Map<Integer, List<Aresta>> adjacencia = grafo.getAdjacencia();
+		Set<Integer> visitados = new HashSet<>();
+		Queue<Integer> fila = new LinkedList<>();
+		fila.add(1);
+		visitados.add(1);
+
+		while (!fila.isEmpty()) {
+			int vertice = fila.poll();
+			for (Aresta aresta : adjacencia.get(vertice)) {
+				int verticeAdjacente = aresta.getVerticeDestino();
+				if (!visitados.contains(verticeAdjacente)) {
+					visitados.add(verticeAdjacente);
+					fila.add(verticeAdjacente);
+				}
+			}
+		}
+
+		return visitados.size() == grafo.getVertices().size();
+	}
+
 }

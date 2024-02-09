@@ -5,6 +5,12 @@ public class ResolverCarteiroChines {
 	public void AlgResolverCarteiroChines(Grafo grafo) {
 		Algoritmos algoritmos = new Algoritmos();
 
+		if(algoritmos.ehConexo(grafo)) {
+			System.out.println("Grafo é conexo");
+		} else {
+			System.out.println("Grafo não é conexo");
+		}
+
 		System.out.println("Grafo: ");
 		grafo.imprimirGrafo();
 
