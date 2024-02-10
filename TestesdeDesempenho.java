@@ -7,55 +7,36 @@ public class TestesdeDesempenho {
         
         TestesdeDesempenho testes = new TestesdeDesempenho();
 
-
-        Grafo grafoEuleriano = CriarGrafoEulerianoExemplo();
-        testes.Testador(grafoEuleriano, "Grafo Euleriano");
+        Grafo grafoEuleriano30 = CriarGrafoEulerianoExemplo();
+        testes.Testador(grafoEuleriano30, "Grafo Euleriano 30");
 
         Grafo grafoNaoEuleriano30 = CriarGrafoNaoEulerianoExemplo30();
         testes.Testador(grafoNaoEuleriano30, "Grafo Nao Euleriano(30 vertices)");
-
-        Grafo grafoNaoEuleriano50 = CriarGrafoNaoEulerianoExemplo50();
-        testes.Testador(grafoNaoEuleriano50, "Grafo Nao Euleriano(50 vertices)");
-        
-        Grafo grafoNaoEuleriano100= CriarGrafoNaoEulerianoExemplo100();
-        testes.Testador(grafoNaoEuleriano100, "Grafo Nao Euleriano(100 vertices)" );
 
     }
 
 
 
     public void Testador(Grafo exGrafo, String TipodoGrafo){
-        Algoritmos algoritmos = new Algoritmos();   // para o caso de testar somente o Dijksra
+
         ResolverCarteiroChines ResolverCarteiroChines = new ResolverCarteiroChines();
         Grafo grafo = exGrafo;
-
-
         System.out.println("\nTeste de Desempenho para " + TipodoGrafo + ":\n");
-
-       // System.out.println(TipodoGrafo + "original :");
-        //grafo.imprimirGrafo();
-
-
-
         long somaTempos = 0;
-        int numeroExecucoes = 5;
-
+        int numeroExecucoes = 1;
+       // grafo.imprimirGrafo();
         List<Grafo> clones = new ArrayList<>();
         for (int i = 0; i < numeroExecucoes; i++) {
         clones.add(grafo.clonarGrafo());            // metodo criado na classe grafos
         }
-
-
-        for (int i = 0; i < numeroExecucoes; i++) {    // laço de desemprenho
+        for (int i = 0; i < numeroExecucoes; i++) {    // laço de desempenho
             Grafo grafoClone = clones.get(i);
+  
 
             long tempoInicial = System.nanoTime();
-          //  algoritmos.AlgResolveCarteiroChines();
             ResolverCarteiroChines.AlgResolverCarteiroChines(grafoClone); 
             long tempoFinal = System.nanoTime();
             long tempoExecucao = tempoFinal - tempoInicial;
-           // System.out.println("Execução " + (i + 1) + ": Tempo de execução do ResolveCarteiroChines: " + tempoExecucao + " milissegundos");
-           //System.out.println("Tempo de execução médio do algoritmo de Dijkstra em " + TipodoGrafo + " é(são): " + (tempoFinalDijkstra - tempoInicialDijkstra) + " milissegundos");
 
             somaTempos += tempoExecucao;  //somatório
         }
@@ -69,7 +50,7 @@ public class TestesdeDesempenho {
         
 
    // pegar exemplos pré-montados
-    private static Grafo CriarGrafoEulerianoExemplo() {        // um ponto se conecta a outro até fechar o ciclo
+    private static Grafo CriarGrafoEulerianoExemplo() {       
         Grafo grafo = new Grafo();
         grafo.adicionarAresta(1, 2, 1);
         grafo.adicionarAresta(2, 3, 1);
@@ -138,9 +119,12 @@ public class TestesdeDesempenho {
             grafo.adicionarAresta(27, 28, 1);
             grafo.adicionarAresta(28, 29, 1);
             grafo.adicionarAresta(29, 30, 1);
-        
-            return grafo;
-        }
+
+            grafo.adicionarAresta(1, 3, 1);
+
+        return grafo;
+    }
+
         
     
     private static Grafo CriarGrafoNaoEulerianoExemplo50() {
