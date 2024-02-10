@@ -13,7 +13,7 @@ public class grafoNaoEuleriano50 {
         }
 
         // Adiciona arestas aleatórias de forma a criar um grafo não euleriano
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 75; i++) {
             int destino = (i % 50) + 1;  // Garante uma aresta para o próximo vértice
             int peso = random.nextInt(10) + 1;  // Peso aleatório entre 1 e 10
             grafo.adicionarAresta(i, destino, peso);
