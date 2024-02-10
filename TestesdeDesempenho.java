@@ -7,7 +7,7 @@ public class TestesdeDesempenho {
         TestesdeDesempenho testes = new TestesdeDesempenho();
 
         Grafo grafoEuleriano30 = CriarGrafoEulerianoExemplo();
-        testes.Testador(grafoEuleriano30, "Grafo Euleriano 30");
+        testes.Testador(grafoEuleriano30, "Grafo Euleriano (30 vertices)");
 
         Grafo grafoNaoEuleriano30 = CriarGrafoNaoEulerianoExemplo30();
         testes.Testador(grafoNaoEuleriano30, "Grafo Nao Euleriano(30 vertices)");
@@ -44,7 +44,7 @@ public class TestesdeDesempenho {
 
         // calcula e exibe a média
         long mediaTempos = somaTempos / numeroExecucoes;
-        System.out.println( "\nTempo médio de execução do algoritmo do em " + TipodoGrafo + " é(são): " + mediaTempos + " nanosegundos");
+        System.out.println( "\nTempo médio de execução do algoritmo do em " + TipodoGrafo + " é(são): " + mediaTempos + " milissegundos");
 
     }
         
@@ -52,36 +52,9 @@ public class TestesdeDesempenho {
    // pegar exemplos pré-montados
     private static Grafo CriarGrafoEulerianoExemplo() {       
         Grafo grafo = new Grafo();
-        grafo.adicionarAresta(1, 2, 1);
-        grafo.adicionarAresta(2, 3, 1);
-        grafo.adicionarAresta(3, 4, 1);
-        grafo.adicionarAresta(4, 5, 1);
-        grafo.adicionarAresta(5, 6, 1);
-        grafo.adicionarAresta(6, 7, 1);
-        grafo.adicionarAresta(7, 8, 1);
-        grafo.adicionarAresta(8, 9, 1);
-        grafo.adicionarAresta(9, 10, 1);
-        grafo.adicionarAresta(10, 11, 1);
-        grafo.adicionarAresta(11, 12, 1);
-        grafo.adicionarAresta(12, 13, 1);
-        grafo.adicionarAresta(13, 14, 1);
-        grafo.adicionarAresta(14, 15, 1);
-        grafo.adicionarAresta(15, 16, 1);
-        grafo.adicionarAresta(16, 17, 1);
-        grafo.adicionarAresta(17, 18, 1);
-        grafo.adicionarAresta(18, 19, 1);
-        grafo.adicionarAresta(19, 20, 1);
-        grafo.adicionarAresta(20, 21, 1);
-        grafo.adicionarAresta(21, 22, 1);
-        grafo.adicionarAresta(22, 23, 1);
-        grafo.adicionarAresta(23, 24, 1);
-        grafo.adicionarAresta(24, 25, 1);
-        grafo.adicionarAresta(25, 26, 1);
-        grafo.adicionarAresta(26, 27, 1);
-        grafo.adicionarAresta(27, 28, 1);
-        grafo.adicionarAresta(28, 29, 1);
-        grafo.adicionarAresta(29, 30, 1);
-        
+        for (int i = 1; i <= 29; i++) {
+            grafo.adicionarAresta(i, i + 1, 1);
+        }
         grafo.adicionarAresta(30, 1, 1);
 
         return grafo;
@@ -90,35 +63,9 @@ public class TestesdeDesempenho {
     private static Grafo CriarGrafoNaoEulerianoExemplo30() {
             Grafo grafo = new Grafo();
             
-            grafo.adicionarAresta(1, 2, 1);
-            grafo.adicionarAresta(2, 3, 1);
-            grafo.adicionarAresta(3, 4, 1);
-            grafo.adicionarAresta(4, 5, 1);
-            grafo.adicionarAresta(5, 6, 1);
-            grafo.adicionarAresta(6, 7, 1);
-            grafo.adicionarAresta(7, 8, 1);
-            grafo.adicionarAresta(8, 9, 1);
-            grafo.adicionarAresta(9, 10, 1);
-            grafo.adicionarAresta(10, 11, 1);
-            grafo.adicionarAresta(11, 12, 1);
-            grafo.adicionarAresta(12, 13, 1);
-            grafo.adicionarAresta(13, 14, 1);
-            grafo.adicionarAresta(14, 15, 1);
-            grafo.adicionarAresta(15, 16, 1);
-            grafo.adicionarAresta(16, 17, 1);
-            grafo.adicionarAresta(17, 18, 1);
-            grafo.adicionarAresta(18, 19, 1);
-            grafo.adicionarAresta(19, 20, 1);
-            grafo.adicionarAresta(20, 21, 1);
-            grafo.adicionarAresta(21, 22, 1);
-            grafo.adicionarAresta(22, 23, 1);
-            grafo.adicionarAresta(23, 24, 1);
-            grafo.adicionarAresta(24, 25, 1);
-            grafo.adicionarAresta(25, 26, 1);
-            grafo.adicionarAresta(26, 27, 1);
-            grafo.adicionarAresta(27, 28, 1);
-            grafo.adicionarAresta(28, 29, 1);
-            grafo.adicionarAresta(29, 30, 1);
+            for (int i = 1; i <= 29; i++) {
+                grafo.adicionarAresta(i, i + 1, 1);
+            }
 
             grafo.adicionarAresta(1, 3, 1);
 
@@ -130,59 +77,9 @@ public class TestesdeDesempenho {
     private static Grafo CriarGrafoNaoEulerianoExemplo50() {
         Grafo grafo = new Grafo();
 
-        grafo.adicionarAresta(1, 2, 1);
-        grafo.adicionarAresta(1, 3, 1);
-        grafo.adicionarAresta(1, 4, 1);
-        grafo.adicionarAresta(2, 3, 1);
-        grafo.adicionarAresta(2, 4, 1);
-        grafo.adicionarAresta(3, 4, 1);
-        grafo.adicionarAresta(4, 5, 1);
-        grafo.adicionarAresta(5, 6, 1);
-        grafo.adicionarAresta(5, 7, 1);
-        grafo.adicionarAresta(6, 7, 1);
-        grafo.adicionarAresta(7, 8, 1);
-        grafo.adicionarAresta(8, 9, 1);
-        grafo.adicionarAresta(9, 10, 1);
-        grafo.adicionarAresta(10, 11, 1);
-        grafo.adicionarAresta(11, 12, 1);
-        grafo.adicionarAresta(12, 13, 1);
-        grafo.adicionarAresta(13, 14, 1);
-        grafo.adicionarAresta(14, 15, 1);
-        grafo.adicionarAresta(15, 16, 1);
-        grafo.adicionarAresta(16, 17, 1);
-        grafo.adicionarAresta(17, 18, 1);
-        grafo.adicionarAresta(18, 19, 1);
-        grafo.adicionarAresta(19, 20, 1);
-        grafo.adicionarAresta(20, 21, 1);
-        grafo.adicionarAresta(21, 22, 1);
-        grafo.adicionarAresta(22, 23, 1);
-        grafo.adicionarAresta(23, 24, 1);
-        grafo.adicionarAresta(24, 25, 1);
-        grafo.adicionarAresta(25, 26, 1);
-        grafo.adicionarAresta(26, 27, 1);
-        grafo.adicionarAresta(27, 28, 1);
-        grafo.adicionarAresta(28, 29, 1);
-        grafo.adicionarAresta(29, 30, 1);
-        grafo.adicionarAresta(30, 31, 1);
-        grafo.adicionarAresta(31, 32, 1);
-        grafo.adicionarAresta(32, 33, 1);
-        grafo.adicionarAresta(33, 34, 1);
-        grafo.adicionarAresta(34, 35, 1);
-        grafo.adicionarAresta(35, 36, 1);
-        grafo.adicionarAresta(36, 37, 1);
-        grafo.adicionarAresta(37, 38, 1);
-        grafo.adicionarAresta(38, 39, 1);
-        grafo.adicionarAresta(39, 40, 1);
-        grafo.adicionarAresta(40, 41, 1);
-        grafo.adicionarAresta(41, 42, 1);
-        grafo.adicionarAresta(42, 43, 1);
-        grafo.adicionarAresta(43, 44, 1);
-        grafo.adicionarAresta(44, 45, 1);
-        grafo.adicionarAresta(45, 46, 1);
-        grafo.adicionarAresta(46, 47, 1);
-        grafo.adicionarAresta(47, 48, 1);
-        grafo.adicionarAresta(48, 49, 1);
-        grafo.adicionarAresta(49, 50, 1);
+        for (int i = 1; i <= 49; i++) {
+            grafo.adicionarAresta(i, i + 1, 1);
+        }
     
         grafo.adicionarAresta(3, 10, 0);
         
@@ -195,12 +92,9 @@ public class TestesdeDesempenho {
         for (int i = 1; i <= 99; i++) {
             grafo.adicionarAresta(i, i + 1, 1);
         }
-        grafo.adicionarAresta(100, 1, 1);
-    
-        grafo.adicionarAresta(1, 3, 1);
-        grafo.adicionarAresta(3, 5, 1);
-        grafo.adicionarAresta(5, 7, 1);
-        grafo.adicionarAresta(7, 9, 1);
+
+        grafo.adicionarAresta(3, 10, 1);
+
 
         return grafo;
     }
